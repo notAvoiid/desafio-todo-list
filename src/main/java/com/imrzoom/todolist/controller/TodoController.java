@@ -3,6 +3,7 @@ package com.imrzoom.todolist.controller;
 import com.imrzoom.todolist.model.Todo;
 import com.imrzoom.todolist.model.TodoDTO;
 import com.imrzoom.todolist.service.TodoService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,7 +28,7 @@ public class TodoController {
     }
 
     @PostMapping
-    public ResponseEntity<List<Todo>> create(@RequestBody TodoDTO dto){
+    public ResponseEntity<List<Todo>> create(@RequestBody @Valid TodoDTO dto){
         List<Todo> todos = this.service.create(dto);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(todos);
